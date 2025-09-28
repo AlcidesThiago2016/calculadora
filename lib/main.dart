@@ -10,9 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const MyHomePage(title: 'Calculator App'),
     );
   }
@@ -26,35 +24,38 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   void _incrementCounter() {
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
+      appBar: AppBar(title: Text(widget.title)),
+      body: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              'counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Container(
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+              child: Text(
+                'outp',
+                style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Expanded(child: Divider()),
+            new Column(
+              children: [
+                Row(children: [Text('7'), Text('8'), Text('9'), Text('/')]),
+                Row(children: [Text('4'), Text('5'), Text('6'), Text('*')]),
+                Row(children: [Text('1'), Text('2'), Text('3'), Text('-')]),
+                Row(children: [Text('.'), Text('0'), Text('00'), Text('+')]),
+                Row(children: [Text('CLEAR'), Text('=')]),
+              ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
