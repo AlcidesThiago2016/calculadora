@@ -31,12 +31,51 @@ class _MyHomePageState extends State<MyHomePage> {
   double num2 = 0.0;
   String operand = "";
 
-  void _incrementCounter() {
-    setState(() {});
-  }
-
   buttonPressed(String buttonText) {
-    print(buttonText);
+    if (buttonText == "CLEAR") {
+      _output = "0";
+      num1 = 0.0;
+      num2 = 0.0;
+      operand = "";
+    } else if (buttonText == "+" ||
+        buttonText == "-" ||
+        buttonText == "*" ||
+        buttonText == "/") {
+      num1 = double.parse(output);
+      operand = buttonText;
+      _output = "0";
+    } else if (buttonText == ".") {
+      if (_output.contains(".")) {
+        print("Already contains a decimals");
+        return;
+      } else {
+        _output = _output + buttonText;
+      }
+    } else if (buttonText == "=") {
+      num2 = double.parse(output);
+      if (operand == "+") {
+        _output = (num1 + num2).toString();
+      }
+      if (operand == "-") {
+        _output = (num1 - num2).toString();
+      }
+      if (operand == "*") {
+        _output = (num1 * num2).toString();
+      }
+      if (operand == "/") {
+        _output = (num1 / num2).toString();
+      }
+      num1 = 0.0;
+      num2 = 0.0;
+      operand = "";
+    } else {
+      _output = _output + buttonText;
+    }
+    print(_output);
+
+    setState(() {
+      output = double.parse(_output).toStringAsFixed(2);
+    });
   }
 
   Widget buildButton(String buttonText) {
